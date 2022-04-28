@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         navAdapter.add("Events");
         navAdapter.add("Appointments");
         navAdapter.add("Public Safety");
-        navAdapter.notifyDataSetChanged();
     }
 
     private void selectDrawerItem(int position) {
