@@ -28,12 +28,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle("ScheduleU");
+
         drawerLayout = findViewById(R.id.drawerLayout);
         drawerList = findViewById(R.id.navList);
 
         navAdapter = new ArrayAdapter<>(this, R.layout.nav_drawer_item, new ArrayList<String>());
         drawerList.setAdapter(navAdapter);
-        drawerList.setOnItemClickListener((parent, view, position, id) -> selectDrawerItem(position));
+        drawerList.setOnItemClickListener(
+                (parent, view, position, id) -> {
+                        selectDrawerItem(position);
+                        setTitle(navAdapter.getItem(position));
+                });
 
         drawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
