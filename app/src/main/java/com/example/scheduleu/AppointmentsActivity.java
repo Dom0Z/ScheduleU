@@ -1,10 +1,5 @@
 package com.example.scheduleu;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -13,11 +8,14 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
+public class AppointmentsActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
@@ -27,9 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        setTitle("ScheduleU");
+        setContentView(R.layout.appointment_view);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         drawerList = findViewById(R.id.navList);
@@ -38,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         drawerList.setAdapter(navAdapter);
         drawerList.setOnItemClickListener(
                 (parent, view, position, id) -> {
-                        selectDrawerItem(position);
-                        setTitle(navAdapter.getItem(position));
+                    selectDrawerItem(position);
+                    setTitle(navAdapter.getItem(position));
                 });
 
         drawerToggle = new ActionBarDrawerToggle(
@@ -60,11 +56,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void selectDrawerItem(int position) {
-        // change activity
-        Log.d(TAG, "selectDrawerItem: Selected drawer item " + position);
+        // Change activity
 
-        if (position == 1) {
-            Intent intent = new Intent(this, AppointmentsActivity.class);
+        if (position == 0) {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
         else if (position == 2) {

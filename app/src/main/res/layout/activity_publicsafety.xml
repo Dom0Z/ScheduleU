@@ -5,31 +5,31 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AppointmentsActivity">
+    tools:context=".PublicSafetyActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/ScheduleText"
+            android:id="@+id/tvRecentAlerts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Schedule an Appointment"
-            app:layout_constraintBottom_toTopOf="@+id/AppointmentRecycler"
+            android:layout_marginTop="16dp"
+            android:text="Recent Alerts"
+            app:layout_constraintBottom_toTopOf="@+id/alertsRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/AppointmentRecycler"
+            android:id="@+id/alertsRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ScheduleText" />
+            app:layout_constraintTop_toBottomOf="@+id/tvRecentAlerts" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
