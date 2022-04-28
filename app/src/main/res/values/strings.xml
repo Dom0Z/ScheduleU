@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ScheduleU</string>
+    <string name="drawer_open">"Opened news sources"</string>
+    <string name="drawer_close">"Closed news sources"</string>
 </resources>
