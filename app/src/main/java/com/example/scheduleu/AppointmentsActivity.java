@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -21,11 +23,23 @@ public class AppointmentsActivity extends AppCompatActivity {
     private ListView drawerList;
     private ArrayAdapter<String> navAdapter;
     private ActionBarDrawerToggle drawerToggle;
+    private final ArrayList<Calendar> calendarArrayList = new ArrayList ();
+    private RecyclerView recyclerView;
+    private CalendarAdapter cAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.appointment_view);
+        calendarArrayList.add(new Calendar("Thursday 4/28", true, false ,true , true, true));
+        calendarArrayList.add(new Calendar("Friday 4/29", false, false ,false , true, true));
+        calendarArrayList.add(new Calendar("Saturday 4/30", true, true ,true , true, true));
+        calendarArrayList.add(new Calendar("Sunday 5/1", false, false ,false , false, true));
+        calendarArrayList.add(new Calendar("Monday 5/2", true, true ,true , true, true));
+        recyclerView = findViewById(R.id.AppointmentRecycler);
+        cAdapter = new CalendarAdapter(calendarArrayList, this);
+        recyclerView.setAdapter(cAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         setTitle("Appointments");
 
@@ -55,6 +69,7 @@ public class AppointmentsActivity extends AppCompatActivity {
         navAdapter.add("Events");
         navAdapter.add("Appointments");
         navAdapter.add("Public Safety");
+
     }
 
     private void selectDrawerItem(int position) {
