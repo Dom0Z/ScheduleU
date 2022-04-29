@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -24,12 +25,15 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> navAdapter;
     private ActionBarDrawerToggle drawerToggle;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setTitle("ScheduleU");
+
 
         drawerLayout = findViewById(R.id.drawerLayout);
         drawerList = findViewById(R.id.navList);

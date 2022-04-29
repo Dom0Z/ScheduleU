@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -21,11 +23,18 @@ public class AppointmentsActivity extends AppCompatActivity {
     private ListView drawerList;
     private ArrayAdapter<String> navAdapter;
     private ActionBarDrawerToggle drawerToggle;
+    private final ArrayList<Calendar> calendarArrayList = new ArrayList ();
+    private RecyclerView recyclerView;
+    private CalendarAdapter cAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.appointment_view);
+        recyclerView = findViewById(R.id.AppointmentRecycler);
+        cAdapter = new CalendarAdapter(calendarArrayList, this);
+        recyclerView.setAdapter(cAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         drawerLayout = findViewById(R.id.drawerLayout);
         drawerList = findViewById(R.id.navList);

@@ -16,7 +16,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>  {
     private List<Calendar> calendarList;
     private MainActivity mainActivity;
 
-    public CalendarAdapter(List<Calendar> calendarList, MainActivity mainActivity) {
+    public CalendarAdapter(List<Calendar> calendarList, AppointmentsActivity mainActivity) {
         this.calendarList = calendarList;
         this.mainActivity = mainActivity;
     }
