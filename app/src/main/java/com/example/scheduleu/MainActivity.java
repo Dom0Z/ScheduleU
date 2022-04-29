@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else if (position == 2) {
-            // start public safety activity
+            Intent intent = new Intent(this, PublicSafetyActivity.class);
+            startActivity(intent);
         }
 
         drawerLayout.closeDrawer(drawerList);

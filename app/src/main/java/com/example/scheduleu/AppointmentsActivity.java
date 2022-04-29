@@ -27,6 +27,8 @@ public class AppointmentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.appointment_view);
 
+        setTitle("Appointments");
+
         drawerLayout = findViewById(R.id.drawerLayout);
         drawerList = findViewById(R.id.navList);
 
@@ -63,7 +65,8 @@ public class AppointmentsActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else if (position == 2) {
-            // start public safety activity
+            Intent intent = new Intent(this, PublicSafetyActivity.class);
+            startActivity(intent);
         }
 
         drawerLayout.closeDrawer(drawerList);

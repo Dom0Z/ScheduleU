@@ -26,6 +26,10 @@
             android:name=".ConfirmAppointmentActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".PublicSafetyActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
