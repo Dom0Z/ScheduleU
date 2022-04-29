@@ -31,6 +31,11 @@ public class AppointmentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.appointment_view);
+        calendarArrayList.add(new Calendar("Thursday 4/28", true, false ,true , true, true));
+        calendarArrayList.add(new Calendar("Friday 4/29", false, false ,false , true, true));
+        calendarArrayList.add(new Calendar("Saturday 4/30", true, true ,true , true, true));
+        calendarArrayList.add(new Calendar("Sunday 5/1", false, false ,false , false, true));
+        calendarArrayList.add(new Calendar("Monday 5/2", true, true ,true , true, true));
         recyclerView = findViewById(R.id.AppointmentRecycler);
         cAdapter = new CalendarAdapter(calendarArrayList, this);
         recyclerView.setAdapter(cAdapter);
@@ -62,6 +67,7 @@ public class AppointmentsActivity extends AppCompatActivity {
         navAdapter.add("Events");
         navAdapter.add("Appointments");
         navAdapter.add("Public Safety");
+
     }
 
     private void selectDrawerItem(int position) {

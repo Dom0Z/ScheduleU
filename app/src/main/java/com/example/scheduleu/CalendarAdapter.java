@@ -14,11 +14,11 @@ import java.util.List;
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>  {
 
     private List<Calendar> calendarList;
-    private MainActivity mainActivity;
+    private AppointmentsActivity appointmentsActivity;
 
-    public CalendarAdapter(List<Calendar> calendarList, AppointmentsActivity mainActivity) {
+    public CalendarAdapter(List<Calendar> calendarList, AppointmentsActivity appointmentsActivity) {
         this.calendarList = calendarList;
-        this.mainActivity = mainActivity;
+        this.appointmentsActivity = appointmentsActivity;
     }
 
 
@@ -55,6 +55,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>  {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return calendarList.size();
     }
 }
