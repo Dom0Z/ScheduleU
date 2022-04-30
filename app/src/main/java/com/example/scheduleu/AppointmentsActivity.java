@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +23,8 @@ import java.util.ArrayList;
 
 public class AppointmentsActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "AppointmentsActivity";
+
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     private ArrayAdapter<String> navAdapter;
@@ -27,6 +32,8 @@ public class AppointmentsActivity extends AppCompatActivity implements View.OnCl
     private final ArrayList<Calendar> calendarArrayList = new ArrayList ();
     private RecyclerView recyclerView;
     private CalendarAdapter cAdapter;
+
+    private ActivityResultLauncher<Intent> activityResultLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +69,8 @@ public class AppointmentsActivity extends AppCompatActivity implements View.OnCl
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
+
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::handleResult);
 
         navAdapter.add("Events");
         navAdapter.add("Appointments");
@@ -118,6 +127,15 @@ public class AppointmentsActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(this, ConfirmAppointmentActivity.class);
-        startActivity(intent);
+        activityResultLauncher.launch(intent);
+    }
+
+    private void handleResult(ActivityResult result) {
+        if (result.getResultCode() == RESULT_OK) {
+            // some nonsense
+            calendarArrayList.remove(2);
+            calendarArrayList.add(2, new Calendar("Monday 5/2", false, true ,true , true, true));
+            cAdapter.notifyItemChanged(2);
+        }
     }
 }
