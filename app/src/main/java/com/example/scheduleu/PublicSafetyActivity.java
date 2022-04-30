@@ -3,8 +3,11 @@ package com.example.scheduleu;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -14,12 +17,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.util.ArrayList;
 
-public class PublicSafetyActivity extends AppCompatActivity {
+public class PublicSafetyActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String TAG = "PublicSafetyActivity";
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     private ArrayAdapter<String> navAdapter;
     private ActionBarDrawerToggle drawerToggle;
+    private Button addAlertButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,12 @@ public class PublicSafetyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_publicsafety);
 
         setTitle("Public Safety");
+
+        if (MainActivity.ADMIN_MODE) {
+            addAlertButton = findViewById(R.id.buttonAddAlert);
+            addAlertButton.setVisibility(View.VISIBLE);
+            addAlertButton.setOnClickListener(this);
+        }
 
         drawerLayout = findViewById(R.id.drawerLayout);
         drawerList = findViewById(R.id.navList);
@@ -95,5 +107,12 @@ public class PublicSafetyActivity extends AppCompatActivity {
 
         // Pass any configuration change to the drawer toggles
         drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == addAlertButton) {
+            Log.d(TAG, "onClick: addevent");
+        }
     }
 }

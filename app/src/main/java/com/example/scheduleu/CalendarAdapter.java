@@ -27,7 +27,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>  {
     public CalendarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflatedLayout = LayoutInflater.from(parent.getContext()).inflate(R.layout.calander_item,parent,false);
 
-
         return new CalendarViewHolder(inflatedLayout);
     }
 
@@ -51,6 +50,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>  {
             holder.button5.setBackgroundColor(Color.RED);
         }
 
+        holder.button1.setOnClickListener(appointmentsActivity);
     }
 
     @Override

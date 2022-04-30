@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Schedule an Appointment"
+        android:fontFamily="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,14 +34,14 @@
             android:id="@+id/tvAppointmentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tuesday 3/29" />
+            android:text="Monday 5/2" />
 
         <TextView
             android:id="@+id/tvAppointmentTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="12:00 pm" />
+            android:text="9:00 am" />
 
     </androidx.cardview.widget.CardView>
 

@@ -11,19 +11,24 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
+    
+    public static final boolean ADMIN_MODE = true;
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     private ArrayAdapter<String> navAdapter;
     private ActionBarDrawerToggle drawerToggle;
+    private Button addEventButton;
 
 
 
@@ -33,7 +38,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setTitle("ScheduleU");
-
+        
+        if (ADMIN_MODE) {
+            addEventButton = findViewById(R.id.buttonAddEvent);
+            addEventButton.setVisibility(View.VISIBLE);
+            addEventButton.setOnClickListener(this);
+        }
 
         drawerLayout = findViewById(R.id.drawerLayout);
         drawerList = findViewById(R.id.navList);
@@ -103,5 +113,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Pass any configuration change to the drawer toggles
         drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == addEventButton) {
+            Log.d(TAG, "onClick: addevent");
+        }
     }
 }

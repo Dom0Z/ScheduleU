@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -17,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AppointmentsActivity extends AppCompatActivity {
+public class AppointmentsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
@@ -66,11 +67,11 @@ public class AppointmentsActivity extends AppCompatActivity {
         navAdapter.add("Appointments");
         navAdapter.add("Public Safety");
 
-        calendarArrayList.add(new Calendar("Thursday 4/28", true, false ,true , true, true));
-        calendarArrayList.add(new Calendar("Friday 4/29", false, false ,false , true, true));
-        calendarArrayList.add(new Calendar("Saturday 4/30", true, true ,true , true, true));
-        calendarArrayList.add(new Calendar("Sunday 5/1", false, false ,false , false, true));
+        calendarArrayList.add(new Calendar("Saturday 4/30", true, false ,true , true, true));
+        calendarArrayList.add(new Calendar("Sunday 5/1", false, false ,false , true, true));
         calendarArrayList.add(new Calendar("Monday 5/2", true, true ,true , true, true));
+        calendarArrayList.add(new Calendar("Tuesday 5/3", false, false ,false , false, true));
+        calendarArrayList.add(new Calendar("Wednesday 5/4", true, true ,true , true, true));
     }
 
     private void selectDrawerItem(int position) {
@@ -112,5 +113,11 @@ public class AppointmentsActivity extends AppCompatActivity {
 
         // Pass any configuration change to the drawer toggles
         drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(this, ConfirmAppointmentActivity.class);
+        startActivity(intent);
     }
 }
