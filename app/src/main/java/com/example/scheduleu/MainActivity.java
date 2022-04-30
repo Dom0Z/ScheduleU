@@ -1,5 +1,8 @@
 package com.example.scheduleu;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -29,8 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayAdapter<String> navAdapter;
     private ActionBarDrawerToggle drawerToggle;
     private Button addEventButton;
+    private TextView event4;
 
-
+    private ActivityResultLauncher<Intent> activityResultLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             addEventButton = findViewById(R.id.buttonAddEvent);
             addEventButton.setVisibility(View.VISIBLE);
             addEventButton.setOnClickListener(this);
+            event4 = findViewById(R.id.event4);
         }
 
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -67,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
+
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::handleResult);
 
         navAdapter.add("Events");
         navAdapter.add("Appointments");
@@ -118,7 +126,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == addEventButton) {
-            Log.d(TAG, "onClick: addevent");
+            Log.d(TAG, "onClick: add event");
+
+            Intent intent = new Intent(this, AddEventActivity.class);
+            activityResultLauncher.launch(intent);
+        }
+    }
+
+    private void handleResult(ActivityResult result) {
+        if (result.getResultCode() == RESULT_OK) {
+            String title = result.getData().getStringExtra("Title");
+            String body = result.getData().getStringExtra("Body");
+            String date = result.getData().getStringExtra("Date");
+            String startTime = result.getData().getStringExtra("StartTime");
+            String endTime = result.getData().getStringExtra("EndTime");
+            String maxRSVP = result.getData().getStringExtra("MaxRSVP");
+
+            event4.setText(title + "\n" + date + " " + startTime + " - " + endTime + "\nCurrent RSVP: 0\nMax RSVP: " + maxRSVP);
+            event4.setVisibility(View.VISIBLE);
         }
     }
 }

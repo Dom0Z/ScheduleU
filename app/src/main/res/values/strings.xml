@@ -3,10 +3,10 @@
     <string name="drawer_open">"Opened news sources"</string>
     <string name="drawer_close">"Closed news sources"</string>
     <string name="current_posted_events">Current Posted Events</string>
-    <string name="iit_late_night_n3_26_22_10_00pm_12_00am_ncurrent_rsvp_78_nmax_rsvp_200">IIT Late Night\n3/26/22 10:00PM - 12:00AM\nCurrent RSVP: 78\nMax RSVP: 200</string>
-    <string name="mock_event_2_n4_4_22_3_30pm_6_00pm_ncurrent_rsvp_23_nmax_rsvp_100">Mock Event 2\n4/4/22 3:30PM - 6:00PM\nCurrent RSVP: 23\nMax RSVP: 100</string>
-    <string name="mock_event_3_n5_4_22_3_30pm_6_00pm_ncurrent_rsvp_100_nmax_rsvp_100">Mock Event 3\n5/4/22 3:30PM - 6:00PM\nCurrent RSVP: 100\nMax RSVP: 100</string>
-    <string name="mock_alert_1">Paintball Shooting\nLocation: 31st and State\nReported: 3/25/22 1:23 pm</string>
-    <string name="mock_alert_2">Fire Alarm (MSV)\nLocation: MSV\nReported: 3/4/22 6:17 pm</string>
-    <string name="mock_alert_3">CPD CRIME SCENE\nLocation: 35th and Lasalle\nReported: 2/4/22 3:53 pm</string>
+    <string name="iit_late_night_n3_26_22_10_00pm_12_00am_ncurrent_rsvp_78_nmax_rsvp_200">IIT Late Night\n3/26/2022 10:00pm - 12:00am\nCurrent RSVP: 78\nMax RSVP: 200</string>
+    <string name="mock_event_2_n4_4_22_3_30pm_6_00pm_ncurrent_rsvp_23_nmax_rsvp_100">Mock Event 2\n4/4/2022 3:30pm - 6:00pm\nCurrent RSVP: 23\nMax RSVP: 100</string>
+    <string name="mock_event_3_n5_4_22_3_30pm_6_00pm_ncurrent_rsvp_100_nmax_rsvp_100">Mock Event 3\n5/4/2022 3:30pm - 6:00pm\nCurrent RSVP: 100\nMax RSVP: 100</string>
+    <string name="mock_alert_1">Paintball Shooting\nLocation: 31st and State\nReported: 03/25/2022 01:23 PM</string>
+    <string name="mock_alert_2">Fire Alarm (MSV)\nLocation: MSV\nReported: 03/4/2022 06:17 PM</string>
+    <string name="mock_alert_3">CPD CRIME SCENE\nLocation: 35th and Lasalle\nReported: 02/4/2022 03:53 PM</string>
 </resources>

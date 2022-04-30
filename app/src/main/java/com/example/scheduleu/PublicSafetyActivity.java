@@ -9,13 +9,20 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class PublicSafetyActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,6 +33,9 @@ public class PublicSafetyActivity extends AppCompatActivity implements View.OnCl
     private ArrayAdapter<String> navAdapter;
     private ActionBarDrawerToggle drawerToggle;
     private Button addAlertButton;
+    private TextView alert4;
+
+    private ActivityResultLauncher<Intent> activityResultLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +48,7 @@ public class PublicSafetyActivity extends AppCompatActivity implements View.OnCl
             addAlertButton = findViewById(R.id.buttonAddAlert);
             addAlertButton.setVisibility(View.VISIBLE);
             addAlertButton.setOnClickListener(this);
+            alert4 = findViewById(R.id.alert4);
         }
 
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -62,6 +73,8 @@ public class PublicSafetyActivity extends AppCompatActivity implements View.OnCl
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
+
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::handleResult);
 
         navAdapter.add("Events");
         navAdapter.add("Appointments");
@@ -112,7 +125,25 @@ public class PublicSafetyActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         if (view == addAlertButton) {
-            Log.d(TAG, "onClick: addevent");
+            Log.d(TAG, "onClick: add alert");
+
+            Intent intent = new Intent(this, AddAlertActivity.class);
+            activityResultLauncher.launch(intent);
+        }
+    }
+
+    private void handleResult(ActivityResult result) {
+        if (result.getResultCode() == RESULT_OK) {
+            String title = result.getData().getStringExtra("Title");
+            String body = result.getData().getStringExtra("Body");
+            String location = result.getData().getStringExtra("Location");
+
+            Date currentTime = Calendar.getInstance().getTime();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+            String dateStr = simpleDateFormat.format(currentTime);
+
+            alert4.setText(title + "\nLocation: " + location + "\nReported: " + dateStr);
+            alert4.setVisibility(View.VISIBLE);
         }
     }
 }

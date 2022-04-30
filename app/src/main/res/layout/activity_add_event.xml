@@ -45,6 +45,30 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextEventTitle" />
 
     <EditText
+        android:id="@+id/editEventStartTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Start Time"
+        android:inputType="time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEventDate" />
+
+    <EditText
+        android:id="@+id/editEventEndTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="End Time"
+        android:inputType="time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editEventStartTime" />
+
+    <EditText
         android:id="@+id/editTextEventBody"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -52,12 +76,12 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:gravity="top"
-        android:hint="Body"
+        android:hint="Description"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/editTextMaxRSVP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEventDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editEventEndTime" />
 
     <EditText
         android:id="@+id/editTextMaxRSVP"

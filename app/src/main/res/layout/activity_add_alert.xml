@@ -33,6 +33,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRecentAlerts" />
 
     <EditText
+        android:id="@+id/editTextAlertLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Location"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAlertTitle" />
+
+    <EditText
         android:id="@+id/editTextAlertBody"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -45,7 +57,7 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonAlertConfirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAlertTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAlertLocation" />
 
     <Button
         android:id="@+id/buttonAlertConfirm"
