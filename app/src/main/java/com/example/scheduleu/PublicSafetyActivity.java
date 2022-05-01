@@ -1,7 +1,11 @@
 package com.example.scheduleu;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -17,6 +21,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.text.SimpleDateFormat;
@@ -27,6 +33,7 @@ import java.util.Date;
 public class PublicSafetyActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "PublicSafetyActivity";
+    private String channelId = "i.apps.notifications";
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
@@ -79,6 +86,8 @@ public class PublicSafetyActivity extends AppCompatActivity implements View.OnCl
         navAdapter.add("Events");
         navAdapter.add("Appointments");
         navAdapter.add("Public Safety");
+
+        createNotificationChannel();
     }
 
     private void selectDrawerItem(int position) {
@@ -144,6 +153,34 @@ public class PublicSafetyActivity extends AppCompatActivity implements View.OnCl
 
             alert4.setText(title + "\nLocation: " + location + "\nReported: " + dateStr);
             alert4.setVisibility(View.VISIBLE);
+
+            sendNotification("PUBLIC SAFETY ALERT: " + title + " (" + location + ")", body);
         }
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(channelId, "Notification", importance);
+            channel.setDescription("Notifications");
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void sendNotification(String title, String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(17, builder.build());
     }
 }

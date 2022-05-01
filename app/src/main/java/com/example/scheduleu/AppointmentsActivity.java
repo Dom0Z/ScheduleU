@@ -81,6 +81,7 @@ public class AppointmentsActivity extends AppCompatActivity implements View.OnCl
         calendarArrayList.add(new Calendar("Monday 5/2", true, true ,true , true, true));
         calendarArrayList.add(new Calendar("Tuesday 5/3", false, false ,false , false, true));
         calendarArrayList.add(new Calendar("Wednesday 5/4", true, true ,true , true, true));
+        calendarArrayList.add(new Calendar("Thursday 5/5", true, false ,false , true, true));
     }
 
     private void selectDrawerItem(int position) {
@@ -126,8 +127,10 @@ public class AppointmentsActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(this, ConfirmAppointmentActivity.class);
-        activityResultLauncher.launch(intent);
+        if (calendarArrayList.get(2).isButton1()) {
+            Intent intent = new Intent(this, ConfirmAppointmentActivity.class);
+            activityResultLauncher.launch(intent);
+        }
     }
 
     private void handleResult(ActivityResult result) {
